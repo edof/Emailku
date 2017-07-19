@@ -6,6 +6,6 @@ public class AppConfig {
     public static String KEY_SUBJECT = "subject";
     public static String KEY_SNIPPET = "snippet";
     public static String KEY_STAR = "star";
-    public static String KEY_TIMESTAMP = "timestammp";
+    public static String KEY_TIMESTAMP = "timestamp";
     public static String KEY_ATTACHMENT = "attachment";
 }
