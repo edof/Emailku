@@ -8,4 +8,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sample_snippet">Dear Aris, you have invited to join CodeLab 3.0 for Java and Android Programming. This event requires Java and Android Programming at intermediate skill. You must improves your skill first.</string>
+    <string name="sample_subject">CodeLab 3.0</string>
+    <string name="sample_sender">Aris Riyanto</string>
 </resources>

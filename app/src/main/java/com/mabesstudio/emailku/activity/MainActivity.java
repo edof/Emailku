@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         if (manager != null) {
             FragmentTransaction transaction = manager.beginTransaction();
             if (transaction != null){
-                transaction.replace(R.id.root_layout, fragment);
+                transaction.replace(R.id.root_layout, fragment, "fragment_inbox");
                 transaction.commit();
             }
         }
