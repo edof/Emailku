@@ -9,10 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Created by Misbahul on 20/07/2017.
- */
-
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private static int[] attribute = new int[]{android.R.attr.listDivider};
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;

@@ -9,15 +9,11 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.util.LruCache;
 
-/**
- * Created by Misbahul on 19/07/2017.
- */
-
 public class VolleySingleton {
         private static VolleySingleton mInstance;
         private RequestQueue mRequestQueue;
         private ImageLoader mImageLoader;
-        private static Context mCtx;
+        private Context mCtx;
 
         private VolleySingleton(Context context) {
             mCtx = context;

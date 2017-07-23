@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/app_name"
@@ -25,7 +26,7 @@
             android:name=".activity.MainActivity"
             android:theme="@style/LoginTheme" />
         <activity android:name=".activity.ProviderActivity" />
-        <activity android:name=".activity.ForgotActivity"></activity>
+        <activity android:name=".activity.ForgotActivity" />
     </application>
 
 </manifest>

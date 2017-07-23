@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Emailku</string>
+    <string name="app_name">Email Guard</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -11,4 +11,8 @@
     <string name="sample_snippet">Dear Aris, you have invited to join CodeLab 3.0 for Java and Android Programming. This event requires Java and Android Programming at intermediate skill. You must improves your skill first.</string>
     <string name="sample_subject">CodeLab 3.0</string>
     <string name="sample_sender">Aris Riyanto</string>
+    <string name="forgot_bold">Tidak bisa login? Lupa password?</string>
+    <string name="forgot_normal">Ketikkan Email anda dan kami akan mengirimkan instruksi reset password anda.</string>
+    <string name="type_email">Masukkan email</string>
+    <string name="send">Kirim</string>
 </resources>

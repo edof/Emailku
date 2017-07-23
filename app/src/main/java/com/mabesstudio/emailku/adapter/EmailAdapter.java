@@ -25,10 +25,6 @@ import java.util.Locale;
 
 import com.mabesstudio.emailku.R;
 
-/**
- * Created by Misbahul on 19/07/2017.
- */
-
 public class EmailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<InboxMail> arrayInbox;
