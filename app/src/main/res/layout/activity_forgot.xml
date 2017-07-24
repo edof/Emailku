@@ -8,7 +8,15 @@
     android:orientation="vertical"
     tools:context="com.mabesstudio.emailku.activity.ForgotActivity">
 
-    <include layout="@layout/toolbar_layout" />
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/toolbar_layout"
+            android:id="@+id/toolbar_forgot" />
+    </android.support.design.widget.AppBarLayout>
+
 
     <TextView
         android:id="@+id/txt_forgot_bold"
