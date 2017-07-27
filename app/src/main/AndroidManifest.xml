@@ -29,7 +29,8 @@
         <activity android:name=".activity.ForgotActivity" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/LoginTheme"/>
+            android:theme="@style/LoginTheme" />
+        <activity android:name=".activity.ComposeActivity"/>
     </application>
 
 </manifest>
