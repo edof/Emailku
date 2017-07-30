@@ -12,6 +12,7 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/tv_subject_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -19,6 +20,7 @@
             android:textAppearance="@android:style/TextAppearance.DialogWindowTitle" />
 
         <ToggleButton
+            android:id="@+id/tb_star_detail"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_centerHorizontal="true"
@@ -68,15 +70,15 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_subject"
+                android:id="@+id/tv_to_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:text="Ke: Saya"
+                android:text="Ke: etaterangkanlah@gmail.com"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_timestamp"
+                android:id="@+id/tv_timestamp_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -90,14 +92,16 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/attach"
+                android:id="@+id/bt_reply_detail"
                 style="?android:borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_reply" />
+                android:src="@drawable/ic_reply"
+                android:clickable="true"
+                android:focusable="true"/>
 
             <ImageButton
-                android:id="@+id/menu"
+                android:id="@+id/menu_detail"
                 style="?android:attr/actionOverflowButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,17 +119,23 @@
         android:paddingRight="16dp">
 
         <TextView
+            android:id="@+id/tv_content_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/content_sample"/>
     </LinearLayout>
 
     <WebView
+        android:id="@+id/wv_content_detail"
         android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content">
 
     </WebView>
+
+        <include layout="@layout/card_attach_layout"
+            android:id="@+id/card_attach"/>
+
 
     <View
         android:layout_width="match_parent"
