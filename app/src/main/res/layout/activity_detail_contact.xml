@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="com.mabesstudio.emailku.activity.DetailContactActivity">
+
+    <include
+        android:id="@+id/toolbar_detail_contact"
+        layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:src="@drawable/aris" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toRightOf="@id/iv_profile"
+            android:layout_centerVertical="true">
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Lengkap"
+                android:text="Aris Riyanto, S.T"
+                android:enabled="false"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_margin="16dp"-->
+            <!--android:layout_toRightOf="@id/iv_profile"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_label_name"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Nama Lengkap"-->
+                <!--android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_name"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Aris Riyanto, S.T"-->
+                <!--android:textSize="20sp" />-->
+        <!--</LinearLayout>-->
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:text="aris.riyanto@gmail.com"
+            android:enabled="false"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <EditText
+            android:id="@+id/et_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID EmailGuard"
+            android:text="aris_kepolen"
+            android:enabled="false"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <EditText
+            android:id="@+id/et_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company"
+            android:text="Indo Cipta Karsa"
+            android:enabled="false"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nomor HP"
+            android:text="087765342615"
+            android:enabled="false"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/button_edit_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        android:visibility="invisible">
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+        <Button
+            android:id="@+id/button_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/ok"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+    </LinearLayout>
+</LinearLayout>

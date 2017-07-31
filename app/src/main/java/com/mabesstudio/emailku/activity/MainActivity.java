@@ -29,6 +29,7 @@ import com.mabesstudio.emailku.fragment.TrashFragment;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,12 +78,18 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_profile) {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.action_addressbook) {
+            Intent intent = new Intent(this, AddressbookActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupNavigationDrawer(){
+    private void setupNavigationDrawer() {
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -112,14 +119,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void makeToast(String message){
+    private void makeToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private void selectFragment(MenuItem item){
+    private void selectFragment(MenuItem item) {
         item.setChecked(true);
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_inbox:
                 mToolbar.setTitle("Inbox");
                 pushFragment(new InboxFragment());
@@ -149,15 +156,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void pushFragment(Fragment fragment){
-        if (fragment == null){
+    private void pushFragment(Fragment fragment) {
+        if (fragment == null) {
             return;
         }
 
         FragmentManager manager = getSupportFragmentManager();
         if (manager != null) {
             FragmentTransaction transaction = manager.beginTransaction();
-            if (transaction != null){
+            if (transaction != null) {
                 transaction.replace(R.id.root_layout, fragment, "fragment_inbox");
                 transaction.commit();
             }

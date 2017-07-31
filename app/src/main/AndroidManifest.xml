@@ -25,9 +25,9 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/LoginTheme" />
-        <!--<activity-->
-            <!--android:name=".activity.SplashActivity"-->
-            <!--android:theme="@style/SplashTheme" />-->
+        <!-- <activity -->
+        <!-- android:name=".activity.SplashActivity" -->
+        <!-- android:theme="@style/SplashTheme" /> -->
         <activity android:name=".activity.ProviderActivity" />
         <activity android:name=".activity.ForgotActivity" />
         <activity
@@ -35,7 +35,10 @@
             android:theme="@style/LoginTheme" />
         <activity android:name=".activity.ComposeActivity" />
         <activity android:name=".activity.DetailActivity" />
-        <activity android:name=".activity.ReplyActivity"></activity>
+        <activity android:name=".activity.ReplyActivity" />
+        <activity android:name=".activity.AddressbookActivity" />
+        <activity android:name=".activity.DetailContactActivity" />
+        <activity android:name=".activity.ProfileActivity"></activity>
     </application>
 
 </manifest>
