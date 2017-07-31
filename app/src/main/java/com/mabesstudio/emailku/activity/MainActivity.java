@@ -20,7 +20,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.mabesstudio.emailku.R;
+import com.mabesstudio.emailku.fragment.DraftFragment;
 import com.mabesstudio.emailku.fragment.InboxFragment;
+import com.mabesstudio.emailku.fragment.OutboxFragment;
+import com.mabesstudio.emailku.fragment.SentFragment;
+import com.mabesstudio.emailku.fragment.TrashFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ComposeActivity.class);
                 startActivity(intent);
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         if (navigationView != null) {
             //select first fragment
             Menu menu = navigationView.getMenu();
+            mToolbar.setTitle("Inbox");
             selectFragment(menu.getItem(0));
 
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -116,19 +121,24 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.nav_inbox:
+                mToolbar.setTitle("Inbox");
                 pushFragment(new InboxFragment());
                 break;
             case R.id.nav_sent:
-                makeToast("Sent fragment");
+                mToolbar.setTitle("Sent");
+                pushFragment(new SentFragment());
                 break;
             case R.id.nav_drafts:
-                makeToast("Drafts fragment");
+                mToolbar.setTitle("Drafts");
+                pushFragment(new DraftFragment());
                 break;
             case R.id.nav_outbox:
-                makeToast("Outbox fragment");
+                mToolbar.setTitle("Outbox");
+                pushFragment(new OutboxFragment());
                 break;
             case R.id.nav_trash:
-                makeToast("Trash fragment");
+                mToolbar.setTitle("Trash");
+                pushFragment(new TrashFragment());
                 break;
             case R.id.nav_settings:
                 makeToast("Settings fragment");

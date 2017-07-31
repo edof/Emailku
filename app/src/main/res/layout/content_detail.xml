@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -36,12 +35,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_marginBottom="16dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_detail_sender"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="8dp"
             android:src="@drawable/aris" />
 
         <LinearLayout
@@ -49,8 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="7"
             android:orientation="vertical"
-            android:paddingLeft="8dp"
-            android:paddingRight="0dp">
+            android:paddingTop="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,6 +63,8 @@
                     android:layout_marginBottom="2dp"
                     android:layout_weight="7"
                     android:text="@string/sample_sender"
+                    android:lines="1"
+                    android:ellipsize="end"
                     android:textAppearance="@android:style/TextAppearance.DialogWindowTitle" />
 
 
@@ -74,38 +75,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:text="Ke: etaterangkanlah@gmail.com"
-                android:textSize="16sp" />
+                android:text="Ke: Saya"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_from_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Dari: etaterangkanlah@gmail.com"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_timestamp_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="17 Juli" />
+                android:textSize="14sp"
+                android:text="17 Juli 2017, 12:30 PM" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:orientation="horizontal">
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:gravity="end">
 
             <ImageButton
                 android:id="@+id/bt_reply_detail"
                 style="?android:borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_reply"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:src="@drawable/ic_reply" />
 
             <ImageButton
                 android:id="@+id/menu_detail"
                 style="?android:attr/actionOverflowButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="showPopup" />
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
 
         </LinearLayout>
 
@@ -122,25 +136,26 @@
             android:id="@+id/tv_content_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/content_sample"/>
+            android:text="@string/content_sample" />
     </LinearLayout>
 
     <WebView
         android:id="@+id/wv_content_detail"
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
 
     </WebView>
 
-        <include layout="@layout/card_attach_layout"
-            android:id="@+id/card_attach"/>
+    <include
+        android:id="@+id/card_attach"
+        layout="@layout/card_attach_layout" />
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ccc"/>
+        android:background="#ccc" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -149,8 +164,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="3"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -159,25 +174,25 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:hapticFeedbackEnabled="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="false"
-                    android:src="@drawable/ic_reply"
-                    />
+                    android:src="@drawable/ic_reply" />
 
                 <TextView
+                    android:id="@+id/textTelepon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:gravity="center"
                     android:text="Balas"
-                    android:clickable="false"
-                    android:id="@+id/textTelepon"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorPrimary" />
+                    android:textStyle="normal" />
 
             </LinearLayout>
 
@@ -188,22 +203,25 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:hapticFeedbackEnabled="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:src="@drawable/ic_reply_all" />
+
                 <TextView
+                    android:id="@+id/textSMS"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:gravity="center"
                     android:text="Balas Semua"
-                    android:clickable="false"
-                    android:id="@+id/textSMS"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorPrimary" />
+                    android:textStyle="normal" />
             </LinearLayout>
 
             <LinearLayout
@@ -213,23 +231,25 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:hapticFeedbackEnabled="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="false"
-                    android:src="@drawable/ic_forward"
-                    />
+                    android:src="@drawable/ic_forward" />
+
                 <TextView
+                    android:id="@+id/textNavigasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:gravity="center"
                     android:text="Teruskan"
-                    android:clickable="false"
-                    android:id="@+id/textNavigasi"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorPrimary" />
+                    android:textStyle="normal" />
             </LinearLayout>
 
         </LinearLayout>
