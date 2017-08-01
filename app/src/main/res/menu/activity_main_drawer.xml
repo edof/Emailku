@@ -22,6 +22,18 @@
             android:id="@+id/nav_trash"
             android:icon="@drawable/ic_menu_trash"
             android:title="Trash"/>
+        <item
+            android:id="@+id/nav_address_book"
+            android:icon="@drawable/ic_contacts"
+            android:title="Address Book"/>
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout"/>
     </group>
 
     <item android:title="All Labels">

@@ -4,7 +4,9 @@
     <item
         android:drawable="@drawable/app_background"/>
 
-    <item>
+    <item
+        android:left="72dp"
+        android:right="72dp">
         <bitmap
             android:gravity="center"
             android:src="@drawable/eg_logo"/>

@@ -1,13 +1,19 @@
 package com.mabesstudio.emailku.activity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,10 +31,14 @@ import com.mabesstudio.emailku.fragment.InboxFragment;
 import com.mabesstudio.emailku.fragment.OutboxFragment;
 import com.mabesstudio.emailku.fragment.SentFragment;
 import com.mabesstudio.emailku.fragment.TrashFragment;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("query", query);
+                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                Log.d("search shown", "showing search");
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                Log.d("search closed", "closing search");
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -52,12 +88,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK){
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && matches.size() > 0){
+                String searchWord = matches.get(0);
+                if (!TextUtils.isEmpty(searchWord)){
+                    searchView.setQuery(searchWord, false);
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (searchView.isSearchOpen()) {
+                searchView.closeSearch();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -65,28 +119,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.action_profile) {
-            Intent intent = new Intent(this, ProfileActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.action_addressbook) {
-            Intent intent = new Intent(this, AddressbookActivity.class);
-            startActivity(intent);
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void setupNavigationDrawer() {
@@ -102,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
         if (navigationView != null) {
             //select first fragment
             Menu menu = navigationView.getMenu();
-            mToolbar.setTitle("Inbox");
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle("Inbox");
+            }
             selectFragment(menu.getItem(0));
 
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -147,11 +186,36 @@ public class MainActivity extends AppCompatActivity {
                 mToolbar.setTitle("Trash");
                 pushFragment(new TrashFragment());
                 break;
+            case R.id.nav_address_book:
+                Intent intent = new Intent(this, AddressbookActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_profile:
+                Intent intent1 = new Intent(this, ProfileActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.nav_logout:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Do you want to logout?");
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    }
+                });
+                builder.create().show();
             case R.id.nav_settings:
                 makeToast("Settings fragment");
                 break;
             case R.id.nav_help_feedback:
-                makeToast("Help &amp; feedback fragment");
+                makeToast("Help & feedback fragment");
                 break;
         }
     }
