@@ -4,33 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/app_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.mabesstudio.emailku.activity.LoginActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:paddingTop="24dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:paddingBottom="32dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp">
 
         <ImageView
-            android:src="@drawable/eg_logo"
             android:layout_width="wrap_content"
-            android:layout_height="90dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal"/>
+            android:src="@drawable/eg_logo" />
 
         <!--email-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
             <EditText
                 android:id="@+id/login_email"
@@ -45,35 +47,37 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            app:passwordToggleEnabled="true">
+
             <EditText
+                android:id="@+id/pass_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/pass_email"
+                android:hint="Password"
                 android:inputType="textPassword"
-                android:textColorHint="@color/colorAccent"
-                android:hint="Password"/>
+                android:textColorHint="@color/colorAccent" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/txt_forgot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="Forgot Password?"
-            android:id="@+id/txt_forgot"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_login"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:padding="12dp"
+            android:layout_marginTop="24dp"
             android:background="@color/colorAccent"
-            android:textColor="@android:color/white"
-            android:text="login"/>
+            android:padding="12dp"
+            android:text="login"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </ScrollView>

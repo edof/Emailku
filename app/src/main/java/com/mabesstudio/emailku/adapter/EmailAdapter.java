@@ -2,13 +2,14 @@ package com.mabesstudio.emailku.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -21,8 +22,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mabesstudio.emailku.R;
 import com.mabesstudio.emailku.activity.DetailActivity;
 import com.mabesstudio.emailku.app.AppConfig;
-import com.mabesstudio.emailku.entity.Email;
 import com.mabesstudio.emailku.listener.OnLoadMoreListener;
+import com.mabesstudio.emailku.model.Email;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,7 +50,7 @@ public class EmailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public EmailAdapter(Context mContext, ArrayList<Email> emailArrayList, RecyclerView recyclerView) {
         this.emailArrayList = emailArrayList;
         this.mContext = mContext;
-        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager){
+        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
             final LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -57,9 +58,9 @@ public class EmailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     super.onScrolled(recyclerView, dx, dy);
                     totalItemCount = layoutManager.getItemCount();
                     lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition();
-                    if (!loading && totalItemCount <= (lastVisibleItem + visibleThreshold)){
+                    if (!loading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                         //item terakhir dicapai
-                        if (onLoadMoreListener != null){
+                        if (onLoadMoreListener != null) {
                             onLoadMoreListener.onLoadMore();
                         }
                         loading = true;
@@ -84,7 +85,7 @@ public class EmailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Email email = emailArrayList.get(position);
+        final Email email = emailArrayList.get(position);
         if (holder instanceof InboxViewHolder) {
             final InboxViewHolder inboxHolder = (InboxViewHolder) holder;
             Glide.with(mContext)
@@ -110,29 +111,12 @@ public class EmailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             //init starred email
             if (email.isStar()) {
-                inboxHolder.toggleStar.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_star_border_black));
-                inboxHolder.toggleStar.setChecked(false);
-            } else {
-                inboxHolder.toggleStar.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_star_black));
                 inboxHolder.toggleStar.setChecked(true);
+            } else {
+                inboxHolder.toggleStar.setChecked(false);
             }
 
-            //change star icon
-            inboxHolder.toggleStar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (inboxHolder.toggleStar.isChecked()) {
-                        inboxHolder.toggleStar.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_star_border_black));
-                        Toast.makeText(mContext, "Mail not starred", Toast.LENGTH_SHORT).show();
-                        inboxHolder.toggleStar.setChecked(false);
-                    } else if (!inboxHolder.toggleStar.isChecked()) {
-                        inboxHolder.toggleStar.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_star_black));
-                        Toast.makeText(mContext, "Mail starred", Toast.LENGTH_SHORT).show();
-                        inboxHolder.toggleStar.setChecked(true);
-                    }
-                }
-            });
-        } else if (holder instanceof LoadingViewHolder){
+        } else if (holder instanceof LoadingViewHolder) {
             ((LoadingViewHolder) holder).progressBar.setIndeterminate(true);
         }
     }
@@ -151,7 +135,7 @@ public class EmailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.onLoadMoreListener = onLoadMoreListener;
     }
 
-    public void setLoaded(){
+    public void setLoaded() {
         loading = false;
     }
 
@@ -190,12 +174,24 @@ public class EmailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     context.startActivity(intent);
                 }
             });
+
+            toggleStar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (toggleStar.isChecked()){
+                        toggleStar.setChecked(false);
+                    } else {
+                        toggleStar.setChecked(true);
+                    }
+                }
+            });
         }
     }
 
-    private class LoadingViewHolder extends RecyclerView.ViewHolder{
+    private class LoadingViewHolder extends RecyclerView.ViewHolder {
 
         ProgressBar progressBar;
+
         public LoadingViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar1);

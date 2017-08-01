@@ -18,15 +18,13 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.kosalgeek.android.json.JsonConverter;
 import com.mabesstudio.emailku.R;
 import com.mabesstudio.emailku.adapter.EmailAdapter;
 import com.mabesstudio.emailku.app.AppConfig;
 import com.mabesstudio.emailku.app.VolleySingleton;
-import com.mabesstudio.emailku.entity.Email;
 import com.mabesstudio.emailku.listener.OnLoadMoreListener;
+import com.mabesstudio.emailku.model.Email;
 import com.mabesstudio.emailku.setup.DividerItemDecoration;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.mabesstudio.emailku.entity;
+package com.mabesstudio.emailku.model;
 
 /**
  * Created by Misbahul on 31/07/2017.

@@ -211,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 builder.create().show();
+                break;
             case R.id.nav_settings:
                 makeToast("Settings fragment");
                 break;

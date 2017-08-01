@@ -1,4 +1,4 @@
-package com.mabesstudio.emailku.entity;
+package com.mabesstudio.emailku.model;
 
 public class Email{
     private int id;

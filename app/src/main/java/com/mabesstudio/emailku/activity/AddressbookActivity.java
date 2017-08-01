@@ -12,7 +12,7 @@ import android.view.ViewTreeObserver;
 
 import com.mabesstudio.emailku.R;
 import com.mabesstudio.emailku.adapter.AddressbookAdapter;
-import com.mabesstudio.emailku.entity.Addressbook;
+import com.mabesstudio.emailku.model.Addressbook;
 
 import java.util.ArrayList;
 

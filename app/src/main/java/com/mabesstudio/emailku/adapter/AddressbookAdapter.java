@@ -16,9 +16,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mabesstudio.emailku.R;
-import com.mabesstudio.emailku.activity.DetailActivity;
 import com.mabesstudio.emailku.activity.DetailContactActivity;
-import com.mabesstudio.emailku.entity.Addressbook;
+import com.mabesstudio.emailku.model.Addressbook;
 
 import java.util.ArrayList;
 
