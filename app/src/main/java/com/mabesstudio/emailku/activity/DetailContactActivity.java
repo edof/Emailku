@@ -1,5 +1,9 @@
 package com.mabesstudio.emailku.activity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +20,6 @@ import com.mabesstudio.emailku.R;
 public class DetailContactActivity extends AppCompatActivity {
 
     private EditText etName, etEmail, etID, etCompany, etPhone;
-    private Button btnOK, btnCancel;
     private LinearLayout layoutBtn;
 
     @Override
@@ -35,13 +38,14 @@ public class DetailContactActivity extends AppCompatActivity {
         etID = (EditText) findViewById(R.id.et_id);
         etCompany = (EditText) findViewById(R.id.et_company);
         etPhone = (EditText) findViewById(R.id.et_phone);
-        btnOK = (Button) findViewById(R.id.button_ok);
-        btnCancel = (Button) findViewById(R.id.button_cancel);
+        Button btnOK = (Button) findViewById(R.id.button_ok);
+        Button btnCancel = (Button) findViewById(R.id.button_cancel);
         layoutBtn = (LinearLayout) findViewById(R.id.button_edit_cancel);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressEditContact();
                 disableEdit();
             }
         });
@@ -76,6 +80,72 @@ public class DetailContactActivity extends AppCompatActivity {
         layoutBtn.setVisibility(View.VISIBLE);
     }
 
+    private void progressEditContact(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Update contact...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        if (progressDialog.isShowing()){
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.dismiss();
+                }
+            }, 2000);
+        }
+        progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Toast.makeText(getApplicationContext(), "Contact updated", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void progressDeleteContact(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Delete contact...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        if (progressDialog.isShowing()){
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.dismiss();
+                }
+            }, 1000);
+        }
+        progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Toast.makeText(getApplicationContext(), "Contact deleted", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+            }
+        });
+    }
+
+    private void dialogDeleteContact(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete contact?");
+        builder.setMessage("This action can't be undo.");
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                progressDeleteContact();
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.create().show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detail_contact, menu);
@@ -92,7 +162,7 @@ public class DetailContactActivity extends AppCompatActivity {
                 enableEdit();
                 return true;
             case R.id.action_delete:
-                Toast.makeText(getApplicationContext(), "Delete this contact", Toast.LENGTH_SHORT).show();
+                dialogDeleteContact();
                 return true;
             default:
                 return false;

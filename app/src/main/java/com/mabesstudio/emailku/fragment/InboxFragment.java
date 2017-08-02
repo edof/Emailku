@@ -87,7 +87,7 @@ public class InboxFragment extends Fragment {
         recyclerViewInbox.setAdapter(emailAdapter);
 
         //add divider into recycler view
-        recyclerViewInbox.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
+        recyclerViewInbox.addItemDecoration(new android.support.v7.widget.DividerItemDecoration(recyclerViewInbox.getContext(), LinearLayoutManager.VERTICAL));
 
         //animate recycler view
         animateRecyclerView(recyclerViewInbox);
