@@ -40,7 +40,7 @@
         <activity android:name=".activity.DetailContactActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.ChangePasswordActivity" />
-        <activity android:name=".OtherProviderActivity"></activity>
+        <activity android:name=".activity.OtherProviderActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.mabesstudio.emailku;
+package com.mabesstudio.emailku.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.mabesstudio.emailku.R;
 import com.mabesstudio.emailku.activity.MainActivity;
 
 public class OtherProviderActivity extends AppCompatActivity {
