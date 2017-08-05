@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mabesstudio.emailku.R;
 
@@ -24,11 +26,22 @@ public class ProviderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.provider,
                 android.R.layout.simple_spinner_item);
-        spinner.setPrompt("Gmail");
-
+//        spinner.setPrompt("Gmail");
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(ProviderActivity.this, parent.getItemAtPosition(position).toString() + " dipilih",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -38,14 +51,19 @@ public class ProviderActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (txtEmail.getText().toString().trim().isEmpty()){
-                    txtEmail.setError("Kolom ini harus diisi !");
-                } else if (!isValidEmail(txtEmail.getText().toString().trim())) {
-                    txtEmail.setError("Gunakan format email yang benar !");
-                } else if (txtPassword.getText().toString().trim().isEmpty()){
-                    txtPassword.setError("Kolom ini harus diisi !");
+                if (!spinner.getSelectedItem().equals("Other")) {
+                    if (txtEmail.getText().toString().trim().isEmpty()){
+                        txtEmail.setError("Kolom ini harus diisi !");
+                    } else if (!isValidEmail(txtEmail.getText().toString().trim())) {
+                        txtEmail.setError("Gunakan format email yang benar !");
+                    } else if (txtPassword.getText().toString().trim().isEmpty()){
+                        txtPassword.setError("Kolom ini harus diisi !");
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), OtherProviderActivity.class);
                     startActivity(intent);
                 }
             }
