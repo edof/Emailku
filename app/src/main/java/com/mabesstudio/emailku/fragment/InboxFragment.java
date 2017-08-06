@@ -3,9 +3,11 @@ package com.mabesstudio.emailku.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +25,9 @@ import com.mabesstudio.emailku.R;
 import com.mabesstudio.emailku.adapter.EmailAdapter;
 import com.mabesstudio.emailku.app.AppConfig;
 import com.mabesstudio.emailku.app.VolleySingleton;
-import com.mabesstudio.emailku.listener.OnLoadMoreListener;
+import com.mabesstudio.emailku.helper.loadmore.OnLoadMoreListener;
+import com.mabesstudio.emailku.helper.swipe.SwipeUtil;
 import com.mabesstudio.emailku.model.Email;
-import com.mabesstudio.emailku.setup.DividerItemDecoration;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,6 +93,9 @@ public class InboxFragment extends Fragment {
 
         //animate recycler view
         animateRecyclerView(recyclerViewInbox);
+
+        //add swipe to dismiss for recycler view
+        setSwipeRecyclerView();
 
         //recycler view load more data
         emailAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -229,6 +234,31 @@ public class InboxFragment extends Fragment {
             }
         };
         VolleySingleton.getInstance(mContext).addToRequestQueue(request);
+    }
+
+    //set swipe delete for recycler view
+    private void setSwipeRecyclerView(){
+        SwipeUtil swipeHelper = new SwipeUtil(0, ItemTouchHelper.LEFT, getActivity()) {
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int swipePosition = viewHolder.getAdapterPosition();
+                emailAdapter.pendingRemoval(swipePosition);
+            }
+
+            @Override
+            public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                if (emailAdapter.isPendingRemoval(position)){
+                    return 0;
+                }
+                return super.getSwipeDirs(recyclerView, viewHolder);
+            }
+        };
+
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(swipeHelper);
+        mItemTouchHelper.attachToRecyclerView(recyclerViewInbox);
+
+        swipeHelper.setLeftColorCode(ContextCompat.getColor(getActivity(), R.color.gray_background));
     }
 
     //set animation fade in for recycler view
