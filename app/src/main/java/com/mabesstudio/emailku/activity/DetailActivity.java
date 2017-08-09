@@ -42,6 +42,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        //method get data intent dari MainActivity
         Intent intent = getIntent();
         sender = intent.getExtras().getString(AppConfig.KEY_SENDER);
         subject = intent.getExtras().getString(AppConfig.KEY_SUBJECT);
@@ -67,6 +68,7 @@ public class DetailActivity extends AppCompatActivity {
         buttonReply = (ImageButton) findViewById(R.id.bt_reply_detail);
         overflowMenu = (ImageButton) findViewById(R.id.menu_detail);
 
+        //method set data intent ke view child di DetailActivity
         emailSubject.setText(subject);
         senderName.setText(sender);
         Glide.with(this)
@@ -114,6 +116,22 @@ public class DetailActivity extends AppCompatActivity {
         //registering popup with OnMenuItemClickListener
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
+
+                //TODO: uncomment method untuk membuat fungsi menu
+//                switch (item.getItemId()){
+//                    case R.id.action_inbox_archieve:
+//                        archieveMail();
+//                        return true;
+//                    case R.id.action_inbox_forward:
+//                        forwardMail();
+//                        return true;
+//                    case R.id.action_inbox_detail:
+//                        detailMail();
+//                        return true;
+//                    default:
+//                        return false;
+//                }
+
                 Toast.makeText(DetailActivity.this, item.getTitle() + "menu item",Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -134,6 +152,11 @@ public class DetailActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+
+            //TODO: uncomment method
+//            case R.id.detail_delete:
+//                deleteMail();
+//                return true;
             default:
                 return false;
         }

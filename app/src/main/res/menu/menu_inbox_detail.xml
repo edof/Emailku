@@ -2,9 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/action_inbox_archieve"
         android:title="Arsipkan"/>
     <item
+        android:id="@+id/action_inbox_forward"
         android:title="Teruskan"/>
     <item
+        android:id="@+id/action_inbox_detail"
         android:title="Lihat detail"/>
 </menu>

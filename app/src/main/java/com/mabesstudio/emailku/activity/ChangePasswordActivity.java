@@ -50,8 +50,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+
+//                TODO: method untuk mengganti password disini
+//                changePassword(int id);
+
                 Toast.makeText(getApplicationContext(), "Password berhasil diganti", Toast.LENGTH_SHORT).show();
-                onBackPressed();
+                onBackPressed(); //dipindah ke dalam method ganti password
             }
         });
         builder.create().show();

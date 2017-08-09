@@ -40,6 +40,7 @@ public class AddressbookActivity extends AppCompatActivity {
         animateRecyclerView(recyclerView);
     }
 
+    //TODO: method untuk memuat data kontak
     private void loadData(){
         for (int i = 0; i < 20; i++) {
             Addressbook addressbook = new Addressbook();
@@ -70,6 +71,7 @@ public class AddressbookActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //fungsi item menu pada toolbar (get item id lalu set methodnya)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
